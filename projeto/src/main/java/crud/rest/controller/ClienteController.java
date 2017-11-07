@@ -34,17 +34,27 @@ public class ClienteController {
 			return new ResponseEntity<Cliente>(HttpStatus.NOT_FOUND);
 		}
 	}
-	
-	@GetMapping(value="/listar", produces=MediaType.APPLICATION_JSON_VALUE)
+
+	@GetMapping(value = "/listar", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Cliente>> listar() {
 		List<Cliente> clientes = service.listar();
 		return new ResponseEntity<List<Cliente>>(clientes, HttpStatus.FOUND);
 	}
-	
-	@GetMapping(value="/encontrar/{id}/{nome}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Cliente>> encontrarPorIdENome(@PathVariable Long id, @PathVariable String nome) {
+
+	@GetMapping(value = "/encontrar/{id}/{nome}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Cliente>> encontrarPorIdENome(
+			@PathVariable Long id, @PathVariable String nome) {
 		List<Cliente> clientes = service.encontrarPorIdENome(id, nome);
 		return new ResponseEntity<List<Cliente>>(clientes, HttpStatus.FOUND);
 	}
 
+	@GetMapping(value = "/criar/{nome}")
+	public void novoClientePorNome(@PathVariable String nome) {
+		service.novoClientePorNome(nome);
+	}
+	
+	@GetMapping(value="/associar/{idCliente}/{idPlano}")
+	public void associarClienteAPlano(@PathVariable Long idCliente, @PathVariable Long idPlano) {
+		service.associarClienteAPlano(idCliente, idPlano);
+	}
 }

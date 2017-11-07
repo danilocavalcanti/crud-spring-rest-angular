@@ -6,8 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 /**
  * @author danilocavalcanti
@@ -22,12 +20,15 @@ public class Plano implements Serializable {
 	@GeneratedValue
 	private Long id;
 
-	@Column
+	@Column(nullable = false)
 	private String nome;
 
-	@ManyToOne
-	@JoinColumn(name = "id_cliente")
-	private Cliente cliente;
+	public Plano() {
+	};
+
+	public Plano(String nome) {
+		this.nome = nome;
+	}
 
 	public Long getId() {
 		return id;

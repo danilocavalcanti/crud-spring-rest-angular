@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * @author danilocavalcanti
@@ -19,13 +21,24 @@ public class Cliente implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
-	@Column
+
+	@Column(nullable = false)
 	private String nome;
+
+	@ManyToOne
+	@JoinColumn(name = "id_plano", nullable = true)
+	private Plano plano;
+
+	public Cliente() {
+	};
 	
-	public Cliente(){
-		this.id = 0L;
-		this.nome = "Teste";
+	public Cliente(String nome) {
+		this.nome = nome;
+	}
+
+	public Cliente(String nome, Plano plano) {
+		this.nome = nome;
+		this.plano = plano;
 	}
 
 	public Long getId() {
@@ -42,6 +55,14 @@ public class Cliente implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public Plano getPlano() {
+		return plano;
+	}
+
+	public void setPlano(Plano plano) {
+		this.plano = plano;
 	}
 
 }

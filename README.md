@@ -7,7 +7,7 @@ CRUD
  - JBoss Wildfly
  
  Frontend:
- - VueJS
+ - AngularJS
  - HTML
  - CSS
 

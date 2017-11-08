@@ -28,7 +28,7 @@ public class ClienteController {
 		Cliente cliente = null;
 		try {
 			cliente = service.encontrarPorId(id);
-			return new ResponseEntity<Cliente>(cliente, HttpStatus.FOUND);
+			return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
 		} catch (NegocioException e) {
 			System.out.println(e.getMensagem());
 			return new ResponseEntity<Cliente>(HttpStatus.NOT_FOUND);
@@ -38,14 +38,14 @@ public class ClienteController {
 	@GetMapping(value = "/listar", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Cliente>> listar() {
 		List<Cliente> clientes = service.listar();
-		return new ResponseEntity<List<Cliente>>(clientes, HttpStatus.FOUND);
+		return new ResponseEntity<List<Cliente>>(clientes, HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/encontrar/{id}/{nome}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Cliente>> encontrarPorIdENome(
 			@PathVariable Long id, @PathVariable String nome) {
 		List<Cliente> clientes = service.encontrarPorIdENome(id, nome);
-		return new ResponseEntity<List<Cliente>>(clientes, HttpStatus.FOUND);
+		return new ResponseEntity<List<Cliente>>(clientes, HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/criar/{nome}")

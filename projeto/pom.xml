@@ -5,8 +5,8 @@
 	<artifactId>rest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>Crud Spring Rest-VueJS</name>
-	<description>Crud Spring Rest-VueJS</description>
+	<name>Crud Spring Rest-AngularJS</name>
+	<description>Crud Spring Rest-AngularJS</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

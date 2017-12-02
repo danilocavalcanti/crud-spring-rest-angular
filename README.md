@@ -1,4 +1,4 @@
-# crud-spring-rest-vuejs
+# crud-spring-rest-angularjs
 CRUD
  Backend:
  - Java 8

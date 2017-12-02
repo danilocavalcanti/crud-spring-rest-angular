@@ -7,7 +7,7 @@ CRUD
  - JBoss Wildfly
  
  Frontend:
- - AngularJS
+ - AngularJS 1.6
  - HTML
  - CSS
 

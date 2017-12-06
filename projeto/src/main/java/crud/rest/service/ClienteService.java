@@ -59,4 +59,8 @@ public class ClienteService {
 		cliente.setPlano(plano);
 		repository.saveAndFlush(cliente);
 	}
+
+	public void novoClientePorJson(Cliente cliente) {
+		repository.saveAndFlush(cliente);
+	}
 }

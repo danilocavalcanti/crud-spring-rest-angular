@@ -8,8 +8,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import crud.rest.exception.NegocioException;
@@ -23,7 +25,7 @@ public class ClienteController {
 	@Autowired
 	ClienteService service;
 
-	@RequestMapping(value = "/encontrar/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/encontrar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Cliente> encontrarPorId(@PathVariable Long id) {
 		Cliente cliente = null;
 		try {
@@ -48,13 +50,18 @@ public class ClienteController {
 		return new ResponseEntity<List<Cliente>>(clientes, HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/criar/{nome}")
+	@PostMapping(value = "/criar/{nome}")
 	public void novoClientePorNome(@PathVariable String nome) {
 		service.novoClientePorNome(nome);
 	}
 	
-	@GetMapping(value="/associar/{idCliente}/{idPlano}")
+	@PutMapping(value="/associar/{idCliente}/{idPlano}")
 	public void associarClienteAPlano(@PathVariable Long idCliente, @PathVariable Long idPlano) {
 		service.associarClienteAPlano(idCliente, idPlano);
+	}
+	
+	@PostMapping(value="/criar", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public void criarByJson(@RequestBody Cliente cliente) {
+		service.novoClientePorJson(cliente);
 	}
 }
